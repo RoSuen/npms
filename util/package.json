@@ -1,0 +1,19 @@
+{
+  "name": "@onev/util",
+  "version": "0.0.3",
+  "description": "The common utilities for ONEV projects.",
+  "main": "index.js",
+  "scripts": {
+    "build:mp": "cp -r src dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "miniprogram": "dist",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RoSuen/npms.git"
+  },
+  "keywords": [],
+  "author": "R. Suen",
+  "license": "MIT",
+  "dependencies": {}
+}
