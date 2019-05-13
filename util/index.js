@@ -1,4 +1,5 @@
 // 模块导出
 module.exports = {
-  promise: require('promise'),
+  promise: require('./dist/promise'),
+  request: require('./dist/request'),
 };
