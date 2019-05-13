@@ -1,6 +1,6 @@
 {
   "name": "@onev/util",
-  "version": "0.0.7",
+  "version": "0.0.15",
   "description": "The common utilities for ONEV projects.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,7 @@
   "keywords": [],
   "author": "R. Suen",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "querystring": "latest"
+  }
 }

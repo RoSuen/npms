@@ -1,8 +1,7 @@
-// 发起到〔ali￤wx〕的特定项目网络请求接口
+// 发起到〔ali￤wx〕的特定项目网络请求接口，仅用于微信小程序端上调用
 
-const qs = require("querystring");
-const request = require('request');
-require('./promise'); // 异步任务〔串行￤并行〕调度能力
+import qs from 'querystring'
+import 'promise' // 异步任务〔串行￤并行〕调度能力
 
 // 网络后台服务接口基础地址
 let baseUrl = {
@@ -29,8 +28,8 @@ function init({ aliUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
 /**
  * 发起到〔ali￤wx〕的通用网络请求
  */
-function _request({ svr = '', api = '/', param = {}, method = 'GET', headers = {}, json = {}, LOG = '[[@onev.util.request]]' }) {
-  const LP = '[[@onev.util.request :: common_request]]';
+function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}, data = {}, LOG = '[[@onev.util.request.miniprogram]]' }) {
+  const LP = '[[@onev.util.request.miniprogram :: common_request]]';
 
   // 检查svr必须为〔ali￤wx〕
   console.assert(svr === 'ali' || svr === 'wx',
@@ -49,26 +48,29 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', headers = {
     api = api.slice(0, -1) // api末尾去掉'?'字符
   }
 
-  // method, headers
-  // json ‑ 请求体的json数据
+  // method, header
+  // data ‑ 请求体的json数据
 
   // 网络请求配置
   const rest = {
     url: baseUrl[svr] + api,
-    method, json,
+    method, data,
   };
-  Object.keys(headers).length ? rest.headers = headers : null;
+  Object.keys(header).length ? rest.header = header : null;
 
   // 发起网络连接
-  return new Promise((resolve, reject) => request(rest, (err, res, body) => {
-    if (!res) { // 网络请求成功，内容错误
+  return new Promise((resolve, reject) => wx.request({
+    ...rest,
+    success(res) {
+      console.log('%s :: RESPONSE OK :: url == %o :: res.data == %o',
+        LOG, rest.url, res.data);
+      resolve(res.data)
+    },
+    fail(err) {
       console.log('%s :: RESPONSE ERROR :: url == %o :: err == %o',
         LOG, rest.url, err);
-      return reject(err)
+      reject(err)
     }
-    console.log('%s :: RESPONSE OK :: url == %o :: body == %o',
-      LOG, rest.url, body);
-    resolve(body)
   })).catch(err => {
     console.log('%s :: CATCH ERROR :: url == %o :: err == %o',
       LOG, rest.url, err);
@@ -79,38 +81,42 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', headers = {
 /**
  * 发起到阿里云后台的网络请求
  */
-function aliRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
-  const LP = '[[@onev.util.request :: ali]]';
+function aliRequest({ api = '/', param = {}, method = 'GET', data = {} }) {
+  const LP = '[[@onev.util.request.miniprogram :: ali]]';
 
   // 检查token合法性
   console.assert( token.ali,
     LP, ':: missing userToken !!');
-  const headers = {
+  const header = {
     Authorization: 'Bearer ' + token.ali
   };
 
   // 发起网络连接
-  return _request({ svr: 'ali', api, param, method, headers, json, LOG: LP })
+  return _request({ svr: 'ali', api, param, method, header, data, LOG: LP })
 }
 
 /**
  * 发起到微信后台的网络请求
  */
-function wxRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
-  const LP = '[[@onev.util.request :: wx]]';
+function wxRequest(type = '', data = {}) {
+  const LP = '[[@onev.util.request.miniprogram :: wx]]';
 
-  // 检查token合法性
-  console.assert( token.wx,
-    LP, ':: missing access_token !!');
-  param.access_token = token.wx;
+  // 检查type合法性：不能为空
+  console.assert( type,
+    LP, ':: error :: type ==', type);
 
-  // 发起网络连接
-  return _request({ svr: 'wx', api, param, method, json, LOG: LP })
+  // 检查data合法性：必须有数据
+  console.assert( Object.keys(data).length,
+    LP, ':: error :: data ==', data);
+
+  data.type = type; // 微信云函数的data包含type字段
+  return wx.cloud.callFunction({ name: 'capi', data })
+    .then( res => res.result )
 }
 
 // 模块导出
-module.exports = {
+export default {
   init,
   ali: aliRequest,
   wx: wxRequest,
-};
+}
