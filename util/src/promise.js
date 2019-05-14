@@ -29,3 +29,6 @@ Promise.parallel = function (tasks) {
   );
   return Promise.all(tasks)
 };
+
+// 并发执行缩略语
+Promise.paral = Promise.parallel;
