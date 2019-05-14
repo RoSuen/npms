@@ -21,8 +21,10 @@ let token = {
  *  阿里和微信网络服务基础地址
  */
 function init({ aliUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
-  baseUrl = { ali: aliUrl, wx: wxUrl };
-  token = { ali: aliToken, wx: wxToken }
+  aliUrl ? baseUrl.ali = aliUrl : null;
+  wxUrl ? baseUrl.wx = wxUrl : null;
+  aliToken ? token.ali = aliToken : null;
+  wxToken ? token.wx = wxToken : null;
 }
 
 /**
