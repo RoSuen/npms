@@ -102,7 +102,7 @@ function wxRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
   // 检查token合法性
   console.assert( token.wx,
     LP, ':: missing access_token !!');
-  param.access_token = token.wx;
+  param.access_token ? null : param.access_token = token.wx;
 
   // 发起网络连接
   return _request({ svr: 'wx', api, param, method, json, LOG: LP })
