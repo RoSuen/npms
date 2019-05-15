@@ -30,7 +30,7 @@ function init({ aliUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
 /**
  * 发起到〔ali￤wx〕的通用网络请求
  */
-function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}, data = {}, LOG = '[[@onev.util.request.miniprogram]]' }) {
+function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}, json = {}, LOG = '[[@onev.util.request.miniprogram]]' }) {
   const LP = '[[@onev.util.request.miniprogram :: common_request]]';
 
   // 检查svr必须为〔ali￤wx〕
@@ -51,12 +51,12 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}
   }
 
   // method, header
-  // data ‑ 请求体的json数据
+  // json ‑ 请求体的json数据
 
   // 网络请求配置
   const rest = {
     url: baseUrl[svr] + api,
-    method, data,
+    method, data:json,
   };
   Object.keys(header).length ? rest.header = header : null;
 
@@ -83,37 +83,31 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}
 /**
  * 发起到阿里云后台的网络请求
  */
-function aliRequest({ api = '/', param = {}, method = 'GET', data = {} }) {
+function aliRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
   const LP = '[[@onev.util.request.miniprogram :: ali]]';
 
   // 检查token合法性
-  console.assert( token.ali,
-    LP, ':: missing userToken !!');
-  const header = {
-    Authorization: 'Bearer ' + token.ali
-  };
+  console.assert(token.ali, LP, ':: missing userToken !!');
+  const header = { Authorization: 'Bearer ' + token.ali };
 
   // 发起网络连接
-  return _request({ svr: 'ali', api, param, method, header, data, LOG: LP })
+  return _request({ svr: 'ali', api, param, method, header, json, LOG: LP })
 }
 
 /**
  * 发起到微信后台的网络请求
  */
-function wxRequest(type = '', data = {}) {
+function wxRequest(type = '', json = {}) {
   const LP = '[[@onev.util.request.miniprogram :: wx]]';
 
   // 检查type合法性：不能为空
-  console.assert( type,
-    LP, ':: error :: type ==', type);
+  console.assert(type, LP, ':: error :: type ==', type);
 
-  // 检查data合法性：必须有数据
-  console.assert( Object.keys(data).length,
-    LP, ':: error :: data ==', data);
+  // 检查json合法性：必须有数据
+  console.assert(Object.keys(json).length, LP, ':: error :: json ==', json);
 
-  data.type = type; // 微信云函数的data包含type字段
-  return wx.cloud.callFunction({ name: 'capi', data })
-    .then( res => res.result )
+  json.type = type; // 微信云函数的调用类型
+  return wx.cloud.callFunction({ name: 'capi', data:json }).then(res => res.result)
 }
 
 // 模块导出

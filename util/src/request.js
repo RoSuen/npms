@@ -31,7 +31,7 @@ function init({ aliUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
 /**
  * 发起到〔ali￤wx〕的通用网络请求
  */
-function _request({ svr = '', api = '/', param = {}, method = 'GET', headers = {}, json = {}, LOG = '[[@onev.util.request]]' }) {
+function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}, json = {}, LOG = '[[@onev.util.request]]' }) {
   const LP = '[[@onev.util.request :: common_request]]';
 
   // 检查svr必须为〔ali￤wx〕
@@ -51,7 +51,7 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', headers = {
     api = api.slice(0, -1) // api末尾去掉'?'字符
   }
 
-  // method, headers
+  // method, header
   // json ‑ 请求体的json数据
 
   // 网络请求配置
@@ -59,7 +59,7 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', headers = {
     url: baseUrl[svr] + api,
     method, json,
   };
-  Object.keys(headers).length ? rest.headers = headers : null;
+  Object.keys(header).length ? rest.headers = header : null;
 
   // 发起网络连接
   return new Promise((resolve, reject) => request(rest, (err, res, body) => {
@@ -85,14 +85,11 @@ function aliRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
   const LP = '[[@onev.util.request :: ali]]';
 
   // 检查token合法性
-  console.assert( token.ali,
-    LP, ':: missing userToken !!');
-  const headers = {
-    Authorization: 'Bearer ' + token.ali
-  };
+  console.assert(token.ali, LP, ':: missing userToken !!');
+  const header = { Authorization: 'Bearer ' + token.ali };
 
   // 发起网络连接
-  return _request({ svr: 'ali', api, param, method, headers, json, LOG: LP })
+  return _request({ svr: 'ali', api, param, method, header, json, LOG: LP })
 }
 
 /**
@@ -102,9 +99,8 @@ function wxRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
   const LP = '[[@onev.util.request :: wx]]';
 
   // 检查token合法性
-  console.assert( token.wx,
-    LP, ':: missing access_token !!');
-  param.access_token ? null : param.access_token = token.wx;
+  console.assert(token.wx, LP, ':: missing access_token !!');
+  !param.access_token ? param.access_token = token.wx : null;
 
   // 发起网络连接
   return _request({ svr: 'wx', api, param, method, json, LOG: LP })
