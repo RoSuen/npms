@@ -99,7 +99,6 @@ function wxRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
   const LP = '[[@onev.util.request :: wx]]';
 
   // 检查token合法性
-  console.assert(token.wx, LP, ':: missing access_token !!');
   !param.access_token ? param.access_token = token.wx : null;
 
   // 发起网络连接
