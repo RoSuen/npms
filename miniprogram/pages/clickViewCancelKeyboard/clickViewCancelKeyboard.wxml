@@ -1,0 +1,5 @@
+<!--pages/clickViewCancelKeyboard/clickViewCancelKeyboard.wxml-->
+<view class='container'>
+  <input placeholder='input keyboard' style='background-color:#ddd; padding:20rpx' focus='true' />
+  <view style='background-color:red; padding:20rpx' bindtap='tapView'>点击红色区域取消上面输入框的键盘</view>
+</view>

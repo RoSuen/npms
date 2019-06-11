@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/clickViewCancelKeyboard/clickViewCancelKeyboard",
     "pages/index/index"
   ],
   "window": {
