@@ -7,6 +7,13 @@ Page({
       icon: 'success',
       duration: 1000
     })
-  }
+  },
+
+  'inputFocus'() {
+    wx.pageScrollTo({
+      scrollTop: 200,
+      duration: 200
+    })
+  },
 
 });
