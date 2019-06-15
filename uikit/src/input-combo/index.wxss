@@ -1,0 +1,26 @@
+/* input-combo/index.wxss */
+
+.component {
+  height: 100rpx;
+}
+
+.title {
+  font-size: 38rpx;
+  line-height: 100rpx;
+  padding-left: 24rpx;
+  padding-right: 16rpx;
+  color: rgba(112,112,112,1);
+}
+
+.separator {
+  font-size: 34rpx;
+  color: rgba(112,112,112,0.3);
+}
+
+.input {
+  position: relative;
+  top: -100rpx;
+  height: 100rpx;
+  font-size: 38rpx;
+  padding-left: 150rpx;
+}
