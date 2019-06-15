@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/demo/demo",
     "pages/index/index"
   ],
   "usingComponents": {
+    "input-combo": "/miniprogram_npm/@onev/uikit/input-combo/index"
   },
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,12 @@
+/* pages/demo/demo.wxss */
+
+.multi-input {
+  border-radius: 8rpx;
+  margin: 16rpx;
+  background-color: aqua;
+}
+
+.submit {
+  margin:16rpx;
+  border:1rpx solid red;
+}

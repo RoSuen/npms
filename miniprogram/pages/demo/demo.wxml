@@ -1,0 +1,9 @@
+<!--pages/demo/demo.wxml-->
+
+<form bindsubmit='showInputValue'>
+  <view class='multi-input'>
+    <input-combo title='款号' name='style' type='number' value='{{style}}' bindinput='onInput' />
+    <input-combo title='名称' name='name' value='{{name}}' bindinput='onInput' />
+  </view>
+  <button class='submit' form-type='submit'>showInputValue</button>
+</form>
