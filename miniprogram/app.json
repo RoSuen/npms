@@ -2,6 +2,8 @@
   "pages": [
     "pages/index/index"
   ],
+  "usingComponents": {
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

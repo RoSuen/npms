@@ -1,0 +1,11 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "NPM Demo",
+  "repository": {},
+  "license": "MIT",
+  "dependencies": {
+    "@onev/util": "latest",
+    "@onev/uikit": "latest"
+  }
+}
