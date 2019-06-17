@@ -1,0 +1,6 @@
+<!--pages/portal/index.wxml-->
+
+<view>
+  <button bindtap='onTap1'>set page portal</button>
+  <button bindtap='onTap2'>navigate page</button>
+</view>

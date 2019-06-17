@@ -1,4 +1,7 @@
 //index.js
+
+import portal from '@onev/util/portal'
+
 //获取应用实例
 const app = getApp();
 
@@ -12,10 +15,13 @@ Page({
   //事件处理函数
   'bindViewTap'() {
     wx.navigateTo({
-      url: './index'
+      url: '/pages/portal/index'
     })
   },
   onLoad() {
+    // 加载页面间传送数据模块
+    portal.load();
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -50,5 +56,11 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+
+  onUnload() {
+    // 卸载页面间传送数据模块
+    portal.unload()
+  },
+
 });
