@@ -35,6 +35,12 @@ function unload() {
   }
 }
 
+// 判断当前页面是否有portal存储
+function isValid() {
+  const page = getCurrentPage();
+  return !!(page.__portal__ || page.__portal_key__ || page.options[KEY])
+}
+
 function getData() {
   const key = getKey();
 
@@ -52,6 +58,16 @@ function setData(data) {
     return true
   }
   return false
+}
+
+// 用于小程序启动时，清理portal残留数据
+// ** 这种数据通常由于页面没有正常卸载导致 **
+function cleanData() {
+  let keys = wx.getStorageInfoSync().keys;
+
+  keys.forEach(key =>
+    key.slice(0, 4) === '__20' && key.slice(-3) === 'Z__' ? wx.removeStorageSync(key) : null
+  )
 }
 
 function wxNavigateTo(route) {
@@ -82,7 +98,9 @@ function getKey() {
 // 模块导出
 export default {
   load, unload,
+  valid: isValid,
   get: getData,
   set: setData,
+  clean: cleanData,
   navigateTo: wxNavigateTo,
 }
