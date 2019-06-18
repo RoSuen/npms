@@ -1,4 +1,7 @@
 //app.js
+
+import portal from '@onev/util/portal'
+
 App({
   onLaunch: function () {
     // 登录
@@ -26,7 +29,10 @@ App({
           })
         }
       }
-    })
+    });
+
+    // 清理portal残留数据
+    portal.clean()
   },
   globalData: {
     userInfo: null
