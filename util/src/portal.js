@@ -70,14 +70,16 @@ function cleanData() {
   )
 }
 
-function wxNavigateTo(route) {
+function wxNavigateTo(url) {
   const key = getKey();
 
-  if ( key && route.indexOf('?') < 0 ) {
-    wx.navigateTo({ url: route + `?${KEY}=${key}` });
-    return true
+  if ( key ) {
+    let query = url.indexOf('?');
+    if ( query > 0 ) url += '&' + `${KEY}=${key}`;
+    if ( query < 0 ) url += '?' + `${KEY}=${key}`
   }
-  return false
+
+  wx.navigateTo({ url: url })
 }
 
 // 查询当前页面对象
