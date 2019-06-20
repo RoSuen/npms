@@ -4,7 +4,8 @@
     "pages/index/index"
   ],
   "usingComponents": {
-    "input-combo": "/miniprogram_npm/@onev/uikit/input-combo/index"
+    "input-combo": "/miniprogram_npm/@onev/uikit/input-combo/index",
+    "input-group": "/miniprogram_npm/@onev/uikit/input-group/index"
   },
   "window": {
     "backgroundTextStyle": "light",

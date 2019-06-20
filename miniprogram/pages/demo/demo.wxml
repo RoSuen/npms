@@ -5,5 +5,8 @@
     <input-combo title='款号' name='style' type='number' value='{{style}}' bindinput='onInput' />
     <input-combo title='名称' name='name' value='{{name}}' bindinput='onInput' />
   </view>
+  <input-group class='multi-input' name='style1' title='款号' type='idcard' value='{{style1}}' more='{{group.style1}}' bindinput='onInput' bindtapmore='onTapMore'>
+    <input-combo name='name1' title='名称' type='text' value='{{name1}}' bindinput='onInput' />
+  </input-group>
   <button class='submit' form-type='submit'>showInputValue</button>
 </form>
