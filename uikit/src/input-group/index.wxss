@@ -1,0 +1,19 @@
+/* input-group/index.wxss */
+
+:host {
+  display: block;
+}
+
+.input-more {
+  display: flex;
+}
+.input-more > input-combo:first-child {
+  flex-grow: 1
+}
+
+.more {
+  width: 100rpx;
+  font-size: 38rpx;
+  line-height: 100rpx;
+  text-align: center;
+}

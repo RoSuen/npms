@@ -1,4 +1,4 @@
-// input-combo/index.js
+// input-group/index.js
 
 Component({
   behaviors: ['wx://form-field'],
@@ -9,6 +9,7 @@ Component({
     title: String,
     type: String,
     value: String,
+    more: Boolean,
   },
 
   // Component initial data
@@ -16,7 +17,7 @@ Component({
 
   // Component methods
   methods: {
-    onInput,
+    onInput, onTapMore,
   },
 });
 
@@ -25,4 +26,11 @@ function onInput(e) {
   this.setData({ value: e.detail.value });
   e.detail.name = this.properties.name;
   this.triggerEvent('input', e.detail)
+}
+
+function onTapMore(e) {
+  this.setData({ more: !this.properties.more });
+  e.detail.more = this.properties.more;
+  e.detail.name = this.properties.name;
+  this.triggerEvent('tapmore', e.detail)
 }

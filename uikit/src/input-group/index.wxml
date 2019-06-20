@@ -1,0 +1,9 @@
+<!-- input-group/index.wxml -->
+
+<block>
+  <view class='input-more'>
+    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' bindinput='onInput' />
+    <view class='more' bindtap='onTapMore'>···</view>
+  </view>
+  <slot wx:if='{{more}}' />
+</block>
