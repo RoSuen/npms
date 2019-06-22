@@ -1,4 +1,7 @@
 // pages/demo/demo.js
+
+let p = null;
+
 Page({
 
   data: {
@@ -8,15 +11,23 @@ Page({
     group: {
       style1: false,
     },
+    price: null,
+    priceKeyboard: 'digit',
   },
 
+  onLoad() { p = this },
+
   onInput, onTapMore,
-  showInputValue,
+  showInputValue, changePriceKeyboard,
 });
 
 function onInput(e) {
   // this.setData({ [e.detail.name]: e.detail.value })
-  this.data[e.detail.name] = e.detail.value
+  this.data[e.detail.name] = e.detail.value;
+
+  if ( e.detail.name === 'price' ) {
+    changePriceKeyboard()
+  }
 }
 
 function onTapMore(e) {
@@ -30,4 +41,12 @@ function showInputValue(e) {
     content: `style: ${e.detail.value.style} ￤ name: ${e.detail.value.name}`,
   });
   console.log(e.detail.value)
+}
+
+function changePriceKeyboard() {
+  if ( p.data.priceKeyboard === 'digit' ) {
+    p.setData({ priceKeyboard: 'number'})
+  } else {
+    p.setData({ priceKeyboard: 'digit'})
+  }
 }
