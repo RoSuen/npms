@@ -3,5 +3,5 @@
 <view class='component'>
   <text class='title'>{{title}}</text>
   <text class='separator'>|</text>
-  <input class='input' type='{{type}}' value='{{value}}' bindinput='onInput' />
+  <input class='input' type='{{type}}' value='{{value}}' maxlength='{{maxlength}}' bindinput='onInput' />
 </view>
