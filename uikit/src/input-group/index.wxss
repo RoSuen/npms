@@ -16,4 +16,5 @@
   font-size: 38rpx;
   line-height: 100rpx;
   text-align: center;
+  color: #576B95;
 }
