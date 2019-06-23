@@ -9,12 +9,12 @@
   line-height: 100rpx;
   padding-left: 24rpx;
   padding-right: 16rpx;
-  color: rgba(112,112,112,1);
+  color: #888;
 }
 
 .separator {
   font-size: 34rpx;
-  color: rgba(112,112,112,0.3);
+  color: #B2B2B2;
 }
 
 .input {
@@ -23,4 +23,5 @@
   height: 100rpx;
   font-size: 38rpx;
   padding-left: 150rpx;
+  color: #000;
 }
