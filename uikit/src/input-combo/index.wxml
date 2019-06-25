@@ -1,6 +1,6 @@
 <!-- input-combo/index.wxml -->
 
-<view class='component'>
+<view class='com'>
   <text class='title'>{{title}}</text>
   <text class='separator'>|</text>
   <input class='input' type='{{type}}' value='{{value}}' maxlength='{{maxlength}}' bindinput='onInput' />

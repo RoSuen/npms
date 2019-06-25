@@ -1,8 +1,7 @@
 /* eso-block/index.wxss */
 
-:host {
-  display: block;
-  padding-top: 40rpx;
+.com {
+  margin-top: 40rpx;
 }
 
 .title-container {
@@ -26,10 +25,4 @@
   text-align: right;
   overflow: hidden;
   max-width: 30%;
-}
-
-.block {
-  padding: 2rpx;
-  border-radius: 8rpx;
-  background-color: #FFF;
 }

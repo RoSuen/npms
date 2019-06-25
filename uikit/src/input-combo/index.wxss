@@ -1,6 +1,6 @@
 /* input-combo/index.wxss */
 
-.component {
+.com {
   height: 100rpx;
 }
 

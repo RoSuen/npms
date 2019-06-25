@@ -1,6 +1,6 @@
 <!-- eso-block/index.wxml -->
 
-<view class='com-class'>
+<view class='com com-class'>
   <!-- 标题栏 -->
   <view class='title-container' style="{{!title && !link ? 'padding:0' : ''}}">
     <view class='title title-class'>{{title}}</view>
@@ -8,7 +8,7 @@
   </view>
 
   <!-- 区块主体 -->
-  <view class='block block-class'>
+  <view class='block-class'>
     <slot />
   </view>
 </view>

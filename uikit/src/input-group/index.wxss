@@ -4,10 +4,10 @@
   display: block;
 }
 
-.input-more {
+.com {
   display: flex;
 }
-.input-more > input-combo:first-child {
+.com > input-combo:first-child {
   flex-grow: 1
 }
 
