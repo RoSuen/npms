@@ -1,0 +1,18 @@
+<!-- image-loader/index.wxml -->
+
+<!--
+<view class="loader">
+  <view class="com" bindtap="onSelect">
+    <block wx:if="{{imgSrc}}">
+      <image src="{{imgSrc}}" style="width: 100%; height: 100%; background-color: #eee;" />
+    </block>
+    <block wx:else="">
+      <van-icon name="photo" size='60rpx' color='#d9d9d9' />
+    </block>
+  </view>
+</view> -->
+
+<view class="com" bindtap="onSelect">
+  <image wx:if="{{imgSrc}}" class="com" src="{{imgSrc}}" mode="aspectFill" style="border:0" />
+  <van-icon wx:else="" name="plus" size="100rpx" color="#d9d9d9" />
+</view>

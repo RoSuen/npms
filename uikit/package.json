@@ -1,6 +1,6 @@
 {
   "name": "@onev/uikit",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The ui components for ONEV projects.",
   "main": "index.js",
   "scripts": {
