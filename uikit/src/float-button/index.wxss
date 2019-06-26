@@ -1,0 +1,19 @@
+/* float-button/index.wxss */
+
+.float-button {
+  position: fixed;
+  right: 30rpx;
+  bottom:50rpx;
+  width: 109rpx;
+  height: 109rpx;
+  background: #07c160;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 8rpx 12rpx rgba(2, 0, 33, .2);
+  -webkit-transition: .25s;
+  z-index: 999999;
+}
+
+.float-button:active {
+  background-color: #01A34E;
+}

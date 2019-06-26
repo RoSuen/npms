@@ -1,6 +1,6 @@
 {
   "name": "@onev/uikit",
-  "version": "0.1.9",
+  "version": "0.2.1",
   "description": "The ui components for ONEV projects.",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,6 @@
   "author": "R. Suen",
   "license": "MIT",
   "dependencies": {
+    "vant-weapp": "0.x"
   }
 }
