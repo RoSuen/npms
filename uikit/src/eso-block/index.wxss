@@ -16,7 +16,7 @@
   font-weight: 400;
   color: rgba(69,90,100,.6);
   overflow: hidden;
-  max-width: 65%;
+  max-width: 60%;
 }
 
 .link {
@@ -24,5 +24,5 @@
   color:#07c160;
   text-align: right;
   overflow: hidden;
-  max-width: 30%;
+  max-width: 35%;
 }
