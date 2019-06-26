@@ -8,7 +8,7 @@
   </view>
 
   <!-- 区块主体 -->
-  <view class='block-class'>
+  <view class='block block-class'>
     <slot />
   </view>
 </view>

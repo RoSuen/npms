@@ -26,3 +26,9 @@
   overflow: hidden;
   max-width: 35%;
 }
+
+.block {
+  padding: 2rpx;
+  border-radius: 8rpx;
+  background-color: #FFF;
+}
