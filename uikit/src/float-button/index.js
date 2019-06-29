@@ -22,6 +22,9 @@ Component({
 
 // 响应点击事件
 function onClick() {
-  console.log(this.data.url);
-  wx.navigateTo({ url: this.data.url })
+  if ( this.properties.url ) {
+    wx.navigateTo({ url: this.properties.url })
+  } else {
+    this.triggerEvent('click')
+  }
 }
