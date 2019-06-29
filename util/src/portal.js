@@ -43,21 +43,57 @@ function isValid() {
 
 function getData() {
   const key = getKey();
+  if ( !key ) return undefined;
 
-  if ( key ) {
-    return wx.getStorageSync(key)
-  }
-  return undefined
+  let storage = wx.getStorageSync(key);
+  storage ? delete storage.result : null;
+
+  return storage
 }
 
 function setData(data) {
   const key = getKey();
+  if ( !key ) return false;
 
-  if ( key ) {
-    wx.setStorageSync(key, data);
-    return true
+  let _data = { ...data };
+  delete _data.result;
+
+  let storage = wx.getStorageSync(key);
+  if ( storage && storage.hasOwnProperty('result') ) {
+    _data.result = storage.result;
   }
-  return false
+
+  wx.setStorageSync(key, _data);
+  return true
+}
+
+function getResult() {
+  const key = getKey();
+  if ( !key ) return undefined;
+
+  let storage = wx.getStorageSync(key);
+  if ( storage && storage.hasOwnProperty('result') ) {
+    return storage.result
+  } else {
+    return undefined
+  }
+}
+
+function setResult(result) {
+  const key = getKey();
+  if ( !key ) return false;
+
+  let storage = wx.getStorageSync(key);
+  wx.setStorageSync(key, { ...storage, result });
+  return true
+}
+
+function reset() {
+  const key = getKey();
+  if ( !key ) return false;
+
+  wx.setStorageSync(key, null);
+  return true
 }
 
 // 用于小程序启动时，清理portal残留数据
@@ -103,6 +139,9 @@ export default {
   valid: isValid,
   get: getData,
   set: setData,
+  result: getResult,
+  return: setResult,
+  reset: reset,
   clean: cleanData,
   navigateTo: wxNavigateTo,
 }
