@@ -2,6 +2,7 @@
 
 Component({
   behaviors: ['wx://form-field'],
+  externalClasses: ['com-class'],
 
   // Component properties
   properties: {

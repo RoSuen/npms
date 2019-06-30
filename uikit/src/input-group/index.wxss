@@ -1,14 +1,13 @@
 /* input-group/index.wxss */
 
-:host {
-  display: block;
-}
-
-.com {
+.combo-more {
   display: flex;
 }
-.com > input-combo:first-child {
-  flex-grow: 1
+.combo-more > input-combo {
+  flex: auto;
+}
+.combo-more > .more {
+  flex: none;
 }
 
 .more {
