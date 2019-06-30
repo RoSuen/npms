@@ -2,7 +2,7 @@
 
 <view class='com-class'>
   <view class='combo-more'>
-    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' bindinput='onInput' />
+    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' focus='{{focus}}' bindinput='onInput' />
     <view class='more' bindtap='onTapMore'>···</view>
   </view>
   <slot wx:if='{{more}}' />
