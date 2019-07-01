@@ -3,14 +3,9 @@
 .combo-more {
   display: flex;
 }
-.combo-more > input-combo {
-  flex: auto;
-}
-.combo-more > .more {
-  flex: none;
-}
 
 .more {
+  flex: none;
   width: 100rpx;
   font-size: 38rpx;
   line-height: 100rpx;

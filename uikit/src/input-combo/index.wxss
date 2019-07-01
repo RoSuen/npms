@@ -1,7 +1,12 @@
 /* input-combo/index.wxss */
 
+:host {
+  flex: auto;
+}
+
 .com {
   height: 100rpx;
+  padding-right: 16rpx;
 }
 
 .title {
