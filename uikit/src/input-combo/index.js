@@ -6,11 +6,12 @@ Component({
 
   // Component properties
   properties: {
-    name:   String,   // 用于 form.submit 获取组件的〔name:value〕
-    title:  String,
-    type:   String,
-    value:  String,
-    focus:  Boolean,
+    name:     String,   // 用于 form.submit 获取组件的〔name:value〕
+    title:    String,
+    type:     String,
+    value:    String,
+    disabled: Boolean,
+    focus:    Boolean,
   },
 
   // Component initial data

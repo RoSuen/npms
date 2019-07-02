@@ -3,5 +3,5 @@
 <view class='com com-class'>
   <text class='title'>{{title}}</text>
   <text class='separator'>|</text>
-  <input class='input' type='{{type}}' value='{{value}}' focus='{{focus}}' maxlength='{{maxlength}}' bindinput='onInput' />
+  <input class='input' type='{{type}}' value='{{value}}' disabled='{{disabled}}' focus='{{focus}}' maxlength='{{maxlength}}' bindinput='onInput' />
 </view>
