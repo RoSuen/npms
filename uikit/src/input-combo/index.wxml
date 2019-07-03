@@ -3,5 +3,8 @@
 <view class='com com-class'>
   <text class='title'>{{title}}</text>
   <text class='separator'>|</text>
-  <input class='input' type='{{type}}' value='{{value}}' disabled='{{disabled}}' focus='{{focus}}' maxlength='{{maxlength}}' bindinput='onInput' bindkeyboardheightchange='onKeyboardHeightChange' />
+  <input class='input' type='{{type}}' value='{{value}}' disabled='{{disabled}}' maxlength='{{maxlength}}'
+         focus='{{focus}}' confirm-type='{{confirm-type}}' confirm-hold='{{confirm-hold}}'
+         cursor='{{cursor}}' selection-start='{{selection-start}}' selection-end='{{selection-end}}'
+         bindinput='onInput' bindkeyboardheightchange='onKeyboardHeightChange' />
 </view>

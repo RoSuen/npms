@@ -6,13 +6,19 @@ Component({
 
   // Component properties
   properties: {
-    name:     String,   // 用于 form.submit 获取组件的〔name:value〕
-    title:    String,
-    type:     String,
-    value:    String,
-    disabled: Boolean,
-    focus:    Boolean,
-    more:     Boolean,
+    name:               String,   // 用于 form.submit 获取组件的〔name:value〕
+    title:              String,
+    type:               String,
+    value:              String,
+    disabled:           Boolean,
+    maxlength:          Number,   // 输入框最大长度，系统默认值
+    focus:              Boolean,
+    'confirm-type':     String,
+    'confirm-hold':     Boolean,
+    cursor:             Number,
+    'selection-start':  Number,
+    'selection-end':    Number,
+    more:               Boolean,
   },
 
   // Component initial data

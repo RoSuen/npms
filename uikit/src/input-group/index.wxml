@@ -2,7 +2,10 @@
 
 <view class='com-class'>
   <view class='combo-more'>
-    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' disabled='{{disabled}}' focus='{{focus}}' bindinput='onInput' bindkeyboardheightchange='onKeyboardHeightChange' />
+    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' disabled='{{disabled}}' maxlength='{{maxlength}}'
+                 focus='{{focus}}' confirm-type='{{confirm-type}}' confirm-hold='{{confirm-hold}}'
+                 cursor='{{cursor}}' selection-start='{{selection-start}}' selection-end='{{selection-end}}'
+                 bindinput='onInput' bindkeyboardheightchange='onKeyboardHeightChange' />
     <view class='more' bindtap='onTapMore'>···</view>
   </view>
   <slot wx:if='{{more}}' />
