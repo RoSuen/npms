@@ -22,6 +22,7 @@ Component({
   // Component methods
   methods: {
     onInput,
+    onKeyboardHeightChange,
   },
 });
 
@@ -40,4 +41,9 @@ function onInput(e) {
   this.setData({ value: e.detail.value, maxlength: this.data.maxlength });
   e.detail.name = this.properties.name;
   this.triggerEvent('input', e.detail)
+}
+
+// 获取键盘高度
+function onKeyboardHeightChange(e) {
+  this.triggerEvent('keyboardheightchange', e.detail)
 }
