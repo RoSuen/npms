@@ -3,8 +3,8 @@
 <view class='com-class'>
   <view class='combo-more'>
     <input-combo title='{{title}}' type='{{type}}' value='{{value}}' disabled='{{disabled}}' maxlength='{{maxlength}}'
-                 focus='{{focus}}' confirm-type='{{confirm-type}}' confirm-hold='{{confirm-hold}}'
-                 cursor='{{cursor}}' selection-start='{{selection-start}}' selection-end='{{selection-end}}'
+                 focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'
+                 cursor='{{cursor}}' selection-start='{{selectionStart}}' selection-end='{{selectionEnd}}'
                  bindinput='onInput' bindkeyboardheightchange='onKeyboardHeightChange' />
     <view class='more' bindtap='onTapMore'>···</view>
   </view>
