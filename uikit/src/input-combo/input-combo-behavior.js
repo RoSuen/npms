@@ -32,7 +32,7 @@ export default Behavior({
 
   // Behavior methods
   methods: {
-    onInput,
+    onInput, onConfirm,
     onKeyboardHeightChange,
   },
 });
@@ -57,6 +57,11 @@ function onInput(e) {
   this.setData({ value: e.detail.value, maxlength: this.properties.maxlength });
   e.detail.name = this.properties.name;
   this.triggerEvent('input', e.detail)
+}
+
+// 点击键盘完成按钮
+function onConfirm(e) {
+  this.triggerEvent('confirm', e.detail)
 }
 
 // 获取键盘高度

@@ -5,7 +5,7 @@
     <input-combo title='{{title}}' type='{{type}}' value='{{value}}' disabled='{{disabled}}' maxlength='{{maxlength}}'
                  focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'
                  cursor='{{cursor}}' selection-start='{{selectionStart}}' selection-end='{{selectionEnd}}'
-                 bindinput='onInput' bindkeyboardheightchange='onKeyboardHeightChange' />
+                 bindinput='onInput' bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
     <view class='more' bindtap='onTapMore'>···</view>
   </view>
   <slot wx:if='{{more}}' />
