@@ -1,5 +1,5 @@
 <!-- float-button/index.wxml -->
 
-<view class="com-class float-button" bindtap="onClick">
+<button class="com-class float-button" open-type="{{openType}}" bindtap="onClick">
   <van-icon name="add-o" size="109rpx" color="#FFF" />
-</view>
+</button>

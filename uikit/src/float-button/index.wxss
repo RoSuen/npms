@@ -6,6 +6,7 @@
   bottom:50rpx;
   width: 109rpx;
   height: 109rpx;
+  padding: 0;
   background: #07c160;
   border-radius: 50%;
   display: block;
