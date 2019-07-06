@@ -47,13 +47,22 @@ function onInput(e) {
   let value = e.detail.value;
 
   // 数字键盘，过滤非数字内容
-  if ( this.properties.type === 'number' ) value = parseInt(value) ? parseInt(value).toString() : '';
+  if ( this.properties.type === 'number' ) value = !isNaN(parseInt(value)) ? parseInt(value).toString() : '';
   // 带小数点的数字键盘
   if ( this.properties.type === 'digit' ) {
-    value = parseFloat(value) ? parseFloat(value).toString() : '';
-    if ( value && value.indexOf('.') < 0 && e.detail.value.indexOf('.') >= 0 ) value += '.';
-    if ( value + '0' === e.detail.value ) value += '0';
-    if ( value + '00' === e.detail.value ) value += '00';
+    value = !isNaN(parseFloat(value)) ? parseFloat(value).toString() : '';
+    if ( value && value.indexOf('.') < 0 && e.detail.value.indexOf('.') >= 0 ) value += '.'
+  }
+
+  // 数字键盘，调整纯0数字
+  if ( this.properties.type === 'number' || this.properties.type === 'digit' ) {
+    // 小数点后面的0
+    if ( value + '0' === e.detail.value || value + '00' === e.detail.value ) value = e.detail.value;
+
+    // 全是0
+    let array = [];
+    for ( const v of e.detail.value ) array.push(v);
+    if ( array.every(v => v === '0') ) value = e.detail.value;
   }
 
   // 是价格输入框吗？
