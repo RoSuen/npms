@@ -32,7 +32,7 @@ export default Behavior({
 
   // Behavior methods
   methods: {
-    onInput, onConfirm,
+    onInput, onFocus, onConfirm,
     onKeyboardHeightChange,
   },
 });
@@ -77,6 +77,11 @@ function onInput(e) {
 
   this.setData({ value, maxlength: this.properties.maxlength });
   this.triggerEvent('input', { value, name: this.properties.name })
+}
+
+// 聚焦事件
+function onFocus(e) {
+  this.triggerEvent('focus', e.detail)
 }
 
 // 点击键盘完成按钮
