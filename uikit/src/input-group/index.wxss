@@ -12,3 +12,9 @@
   text-align: center;
   color: #576B95;
 }
+
+.slot {
+  transition: max-height ease-out 0.3s;
+  overflow: hidden;
+  max-height: 0;
+}

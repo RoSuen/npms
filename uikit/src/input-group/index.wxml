@@ -8,5 +8,7 @@
                  bindinput='onInput' bindfocus="onFocus" bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
     <view class='more' bindtap='onTapMore'>···</view>
   </view>
-  <slot wx:if='{{more}}' />
+  <view class='slot' style="{{more ? 'max-height: 1000rpx; transition: max-height ease-in 0.5s' : ''}}">
+    <slot />
+  </view>
 </view>
