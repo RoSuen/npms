@@ -44,9 +44,19 @@ function ready() {
 
 // 键盘输入的事件响应，外部通过 name 区分组件实例
 function onInput(e) {
+  let value = e.detail.value;
+
+  // 数字键盘，过滤非数字内容
+  if ( this.properties.type === 'number' ) value = parseInt(value) ? parseInt(value).toString() : '';
+  // 带小数点的数字键盘
+  if ( this.properties.type === 'digit' ) {
+    value = parseFloat(value) ? parseFloat(value).toString() : '';
+    if ( value && value.indexOf('.') < 0 && e.detail.value.indexOf('.') >= 0 ) value += '.'
+  }
+
   // 是价格输入框吗？
   if ( this.properties.name === 'price' ) {
-    const dot = e.detail.value.indexOf('.');
+    const dot = value.indexOf('.');
     if ( dot >= 0 ) { // 有小数点，最多只能继续输入2个字符
       this.properties.maxlength = dot + 3
     } else {          // 没有小数点，最大长度放开为初始值
@@ -54,9 +64,8 @@ function onInput(e) {
     }
   }
 
-  this.setData({ value: e.detail.value, maxlength: this.properties.maxlength });
-  e.detail.name = this.properties.name;
-  this.triggerEvent('input', e.detail)
+  this.setData({ value, maxlength: this.properties.maxlength });
+  this.triggerEvent('input', { value, name: this.properties.name })
 }
 
 // 点击键盘完成按钮
