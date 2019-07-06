@@ -51,7 +51,9 @@ function onInput(e) {
   // 带小数点的数字键盘
   if ( this.properties.type === 'digit' ) {
     value = parseFloat(value) ? parseFloat(value).toString() : '';
-    if ( value && value.indexOf('.') < 0 && e.detail.value.indexOf('.') >= 0 ) value += '.'
+    if ( value && value.indexOf('.') < 0 && e.detail.value.indexOf('.') >= 0 ) value += '.';
+    if ( value + '0' === e.detail.value ) value += '0';
+    if ( value + '00' === e.detail.value ) value += '00';
   }
 
   // 是价格输入框吗？
