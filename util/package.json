@@ -1,6 +1,6 @@
 {
   "name": "@onev/util",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "The common utilities for ONEV projects.",
   "main": "index.js",
   "scripts": {

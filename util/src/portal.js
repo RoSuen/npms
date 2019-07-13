@@ -107,15 +107,19 @@ function cleanData() {
 }
 
 function wxNavigateTo(url) {
+  wx.navigateTo({ url: routeURL(url) })
+}
+
+function wxRedirectTo(url) {
+  wx.redirectTo({ url: routeURL(url) })
+}
+
+function routeURL(url) {
   const key = getKey();
+  if ( !key ) return url;
 
-  if ( key ) {
-    let query = url.indexOf('?');
-    if ( query > 0 ) url += '&' + `${KEY}=${key}`;
-    if ( query < 0 ) url += '?' + `${KEY}=${key}`
-  }
-
-  wx.navigateTo({ url: url })
+  let query = url.indexOf('?');
+  return url + (query < 0 ? '?' : '&') + `${KEY}=${key}`
 }
 
 // 查询当前页面对象
@@ -144,4 +148,5 @@ export default {
   reset: reset,
   clean: cleanData,
   navigateTo: wxNavigateTo,
+  redirectTo: wxRedirectTo,
 }
