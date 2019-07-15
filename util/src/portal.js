@@ -1,5 +1,7 @@
 // 页面间数据传送，仅用于微信小程序端上调用
 
+import qs from 'querystring'
+
 // page.__portal__ 存储页面自身拥有的storage
 // page.__portal_key__ 存储传入页面的storage
 // ** 目前页面只能处于以上两种状态之一 **
@@ -107,19 +109,20 @@ function cleanData() {
 }
 
 function wxNavigateTo(url) {
-  wx.navigateTo({ url: routeURL(url) })
+  const key = getKey();
+  if ( !key ) return wx.navigateTo({ url });
+
+  let query = url.indexOf('?');
+  wx.navigateTo({ url: url + (query < 0 ? '?' : '&') + `${KEY}=${key}` })
 }
 
 function wxRedirectTo(url) {
-  wx.redirectTo({ url: routeURL(url) })
-}
-
-function routeURL(url) {
-  const key = getKey();
-  if ( !key ) return url;
+  // 数据无效，直接 redirect
+  const data = getData();
+  if ( !data || !Object.keys(data).length ) return wx.redirectTo({ url });
 
   let query = url.indexOf('?');
-  return url + (query < 0 ? '?' : '&') + `${KEY}=${key}`
+  wx.redirectTo({ url: url + (query < 0 ? '?' : '&') + qs.stringify(data) })
 }
 
 // 查询当前页面对象
