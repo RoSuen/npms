@@ -13,7 +13,7 @@ Component({
   methods: { onTapMore },
 });
 
-function onTapMore(e) {
+function onTapMore(e) { wx.vibrateShort();
   this.setData({ more: !this.properties.more });
   e.detail.more = this.properties.more;
   e.detail.name = this.properties.name;
