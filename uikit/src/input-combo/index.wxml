@@ -1,7 +1,7 @@
 <!-- input-combo/index.wxml -->
 
 <view class='com com-class'>
-  <text class='title'>{{title}}</text>
+  <text class='title' bindtap="onTapTitle">{{title}}</text>
   <text class='separator'>|</text>
   <input class='input' type='{{type}}' value='{{value}}' disabled='{{disabled}}' maxlength='{{maxlength}}'
          focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'

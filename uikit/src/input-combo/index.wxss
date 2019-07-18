@@ -5,28 +5,28 @@
 }
 
 .com {
+  display: flex;
+  align-items: center;
   height: 100rpx;
-  padding-right: 16rpx;
 }
 
 .title {
+  flex: none;
+  padding: 20rpx 16rpx 20rpx 24rpx;
   font-size: 38rpx;
-  line-height: 100rpx;
-  padding-left: 24rpx;
-  padding-right: 16rpx;
   color: #888;
 }
 
 .separator {
-  font-size: 34rpx;
+  transform: translateY(2%);
+  font-size: 32rpx;
   color: #B2B2B2;
 }
 
 .input {
-  position: relative;
-  top: -100rpx;
-  height: 100rpx;
+  flex: auto;
+  height: 100%;
+  padding: 0 16rpx 0 24rpx;
   font-size: 38rpx;
-  padding-left: 150rpx;
   color: #000;
 }

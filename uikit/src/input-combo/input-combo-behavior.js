@@ -32,7 +32,7 @@ export default Behavior({
 
   // Behavior methods
   methods: {
-    onInput, onFocus, onConfirm,
+    onTapTitle, onInput, onFocus, onConfirm,
     onKeyboardHeightChange,
   },
 });
@@ -40,6 +40,11 @@ export default Behavior({
 // Behavior onReady
 function ready() {
   this.data._maxlength = this.properties.maxlength
+}
+
+// 点击标题区域聚焦输入框
+function onTapTitle() {
+  this.setData({ focus: true })
 }
 
 // 键盘输入的事件响应，外部通过 name 区分组件实例
