@@ -2,8 +2,8 @@
 
 <view class='com-class'>
   <view class='combo-more'>
-    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' disabled='{{disabled}}' maxlength='{{maxlength}}'
-                 focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'
+    <input-combo title='{{title}}' type='{{type}}' value='{{value}}' required='{{required}}' disabled='{{disabled}}'
+                 maxlength='{{maxlength}}' focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'
                  cursor='{{cursor}}' selection-start='{{selectionStart}}' selection-end='{{selectionEnd}}'
                  bindinput='onInput' bindfocus="onFocus" bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
     <view class='more' bindtap='onTapMore'>⢸</view>

@@ -9,6 +9,7 @@ export default Behavior({
     title:              String,
     type:               String,
     value:              String,
+    required:           Boolean,
     disabled:           Boolean,
     maxlength: {                  // 输入框最大长度
       type:             Number,
