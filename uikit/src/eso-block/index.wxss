@@ -28,7 +28,7 @@
 }
 
 .block {
-  padding: 2rpx;
+  overflow: hidden;
   border-radius: 8rpx;
   background-color: #FFF;
 }
