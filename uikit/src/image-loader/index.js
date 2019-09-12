@@ -8,6 +8,10 @@ Component({
       value:  '',
       observer(res) { this.triggerEvent('change', res) }
     },
+    disabled: {
+      type:   Boolean,
+      value:  false,
+    },
   },
 
   // Properties Observer
@@ -29,6 +33,9 @@ Component({
 
 // 响应图片选择
 function onSelect() {
+  // 检查禁用状态
+  if ( this.properties.disabled ) return;
+
   wx.chooseImage({
     count: 1,
     sizeType: ['compressed'],
