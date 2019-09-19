@@ -34,12 +34,10 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}
   const LP = '[[@onev.util.request.miniprogram :: common_request]]';
 
   // 检查svr必须为〔ali￤wx〕
-  console.assert(svr === 'ali' || svr === 'wx',
-    LP, ':: error :: svr ==', svr);
+  console.assert(svr === 'ali' || svr === 'wx', LP, ':: error :: svr ==', svr);
 
   // 检查api参数合法性
-  console.assert(api && api.length > 1 && api[0] === '/',
-    LP, ':: error :: api ==', api);
+  console.assert(api && api.length > 1 && api[0] === '/', LP, ':: error :: api ==', api);
   // api末尾追加'?'字符
   api += api.substr(-1) === '?' ? '' : '?';
 
@@ -61,23 +59,50 @@ function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}
   Object.keys(header).length ? rest.header = header : null;
 
   // 发起网络连接
-  return new Promise((resolve, reject) => wx.request({
-    ...rest,
-    success(res) {
-      console.log('%s :: RESPONSE OK :: url == %o :: res.data == %o',
-        LOG, rest.url, res.data);
-      resolve(res.data)
-    },
-    fail(err) {
-      console.log('%s :: RESPONSE ERROR :: url == %o :: err == %o',
-        LOG, rest.url, err);
-      reject(err)
+  return new Promise(doRequest).then(res => {
+    if ( res.statusCode === 200 ) {
+      console.log('%s :: RESPONSE OK :: url == %o :: res.data == %o', LOG, rest.url, res.data);
+      return res.data
+    } else if ( res.statusCode === 403 ) {
+      console.log('%s :: RESPONSE OK :: AUTH 403 ERR :: REQUEST FIRST :: url == %o :: res == %o', LOG, rest.url, res);
+
+      // 触发认证403错误的外部补偿逻辑
+      token.ali = '';
+      use.fullLogin();
+
+      let hasToken = false;
+      const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+      return (async () => {
+        for (let i = 0; i < 10; i++) {
+          if ( hasToken ) break;
+          await sleep(1000).then(() => hasToken = !!token.ali)
+        }
+
+        // 修正阿里云访问请求的header
+        rest.header.Authorization = 'Bearer ' + token.ali;
+        return new Promise(doRequest).then(res => {
+          console.log('%s :: RESPONSE OK :: AUTH 403 EOK :: REQUEST SECOND :: url == %o :: res.data == %o', LOG, rest.url, res.data);
+          return res.data
+        })
+      })()
     }
-  })).catch(err => {
-    console.log('%s :: CATCH ERROR :: url == %o :: err == %o',
-      LOG, rest.url, err);
+  }).catch(err => {
+    console.log('%s :: CATCH ERROR :: url == %o :: err == %o', LOG, rest.url, err);
     return err
-  })
+  });
+
+  function doRequest(resolve, reject) {
+    wx.request({
+      ...rest,
+      success(res) {
+        resolve(res)
+      },
+      fail(err) {
+        console.log('%s :: RESPONSE ERROR :: url == %o :: err == %o', LOG, rest.url, err);
+        reject(err)
+      }
+    })
+  }
 }
 
 /**
@@ -110,9 +135,19 @@ function wxRequest(type = '', json = {}) {
   return wx.cloud.callFunction({ name: 'capi', data:json }).then(res => res.result)
 }
 
+/**
+ * 处理阿里云服务的认证403错误
+ * handler: fullLogin
+ */
+let use = {};
+function registerHandler(handler = {}) {
+  use = { ...use, ...handler }
+}
+
 // 模块导出
 export default {
   init,
   ali: aliRequest,
   wx: wxRequest,
+  registerHandler,
 }
