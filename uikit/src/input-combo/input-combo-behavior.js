@@ -33,7 +33,7 @@ export default Behavior({
 
   // Behavior methods
   methods: {
-    onTapTitle, onInput, onFocus, onConfirm,
+    onTapTitle, onInput, onFocus, onBlur, onConfirm,
     onKeyboardHeightChange,
   },
 });
@@ -87,7 +87,14 @@ function onInput(e) {
 
 // 聚焦事件
 function onFocus(e) {
+  this.properties.focus = true;
   this.triggerEvent('focus', e.detail)
+}
+
+// 失焦事件
+function onBlur(e) {
+  this.properties.focus = false;
+  this.triggerEvent('blur', e.detail)
 }
 
 // 点击键盘完成按钮

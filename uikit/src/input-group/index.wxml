@@ -5,7 +5,7 @@
     <input-combo title='{{title}}' type='{{type}}' value='{{value}}' required='{{required}}' disabled='{{disabled}}'
                  maxlength='{{maxlength}}' focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'
                  cursor='{{cursor}}' selection-start='{{selectionStart}}' selection-end='{{selectionEnd}}'
-                 bindinput='onInput' bindfocus="onFocus" bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
+                 bindinput='onInput' bindfocus="onFocus" bindblur="onBlur" bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
     <view class='more' bindtap='onTapMore'>⢸</view>
   </view>
   <view class='slot' style="{{more ? 'max-height: 1000rpx; transition: max-height ease-in 0.5s' : ''}}">

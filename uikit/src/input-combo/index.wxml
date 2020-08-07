@@ -6,5 +6,5 @@
   <input class='input' type='{{type}}' value='{{value}}' placeholder="{{required ? '必须填写' : ''}}" disabled='{{disabled}}'
          maxlength='{{maxlength}}' focus='{{focus}}' confirm-type='{{confirmType}}' confirm-hold='{{confirmHold}}'
          cursor='{{cursor}}' selection-start='{{selectionStart}}' selection-end='{{selectionEnd}}'
-         bindinput='onInput' bindfocus="onFocus" bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
+         bindinput='onInput' bindfocus="onFocus" bindblur="onBlur" bindconfirm='onConfirm' bindkeyboardheightchange='onKeyboardHeightChange' />
 </view>
