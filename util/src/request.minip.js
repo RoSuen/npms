@@ -6,7 +6,8 @@ import 'promise' // 异步任务〔串行￤并行〕调度能力
 // 网络后台服务接口基础地址
 let baseUrl = {
   ali: '',
-  wx: '',
+  fc:  '',
+  wx:  '',
 };
 
 // 网络后台服务的请求令牌
@@ -20,11 +21,12 @@ let token = {
  *  阿里和微信网络服务请求令牌
  *  阿里和微信网络服务基础地址
  */
-function init({ aliUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
-  aliUrl ? baseUrl.ali = aliUrl : null;
-  wxUrl ? baseUrl.wx = wxUrl : null;
-  aliToken ? token.ali = aliToken : null;
-  wxToken ? token.wx = wxToken : null;
+function init({ aliUrl = '', fcUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
+  aliUrl && ( baseUrl.ali = aliUrl )
+  fcUrl  && ( baseUrl.fc  = fcUrl  )
+  wxUrl  && ( baseUrl.wx  = wxUrl  )
+  aliToken && ( token.ali = aliToken )
+  wxToken  && ( token.wx  = wxToken  )
 }
 
 /**
@@ -33,8 +35,8 @@ function init({ aliUrl = '', wxUrl = '', aliToken = '', wxToken = ''}) {
 function _request({ svr = '', api = '/', param = {}, method = 'GET', header = {}, json = {}, LOG = '[[@onev.util.request.miniprogram]]' }) {
   const LP = '[[@onev.util.request.miniprogram :: common_request]]';
 
-  // 检查svr必须为〔ali￤wx〕
-  console.assert(svr === 'ali' || svr === 'wx', LP, ':: error :: svr ==', svr);
+  // 检查svr必须为〔ali￤fc￤wx〕
+  console.assert(svr === 'ali' || svr === 'fc' || svr === 'wx', LP, ':: error :: svr ==', svr);
 
   // 检查api参数合法性
   console.assert(api && api.length > 1 && api[0] === '/', LP, ':: error :: api ==', api);
@@ -120,6 +122,20 @@ function aliRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
 }
 
 /**
+ * 发起到阿里云函数计算服务接口的网络请求
+ */
+function fcRequest({ api = '/', param = {}, method = 'GET', json = {} }) {
+  const LP = '[[@onev.util.request.miniprogram :: fc]]';
+
+  // 检查token合法性
+  console.assert(token.ali, LP, ':: missing userToken !!');
+  const header = { Authorization: 'Bearer ' + token.ali };
+
+  // 发起网络连接
+  return _request({ svr: 'fc', api, param, method, header, json, LOG: LP })
+}
+
+/**
  * 发起到微信后台的网络请求
  */
 function wxRequest(type = '', json = {}) {
@@ -146,8 +162,8 @@ function registerHandler(handler = {}) {
 
 // 模块导出
 export default {
-  init,
+  init, registerHandler,
   ali: aliRequest,
-  wx: wxRequest,
-  registerHandler,
+  fc:  fcRequest,
+  wx:  wxRequest,
 }
