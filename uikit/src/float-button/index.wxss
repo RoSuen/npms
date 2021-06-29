@@ -4,7 +4,7 @@
   position: fixed;
   right: 30rpx;
   bottom:50rpx;
-  width: 109rpx;
+  width: 109rpx !important;
   height: 109rpx;
   padding: 0;
   background: #07c160;
@@ -13,8 +13,10 @@
   box-shadow: 0 8rpx 12rpx rgba(2, 0, 33, .2);
   -webkit-transition: .25s;
   z-index: 999999;
+  opacity: 0.5;
 }
 
 .float-button:active {
+  opacity: inherit;
   background-color: #01A34E;
 }
